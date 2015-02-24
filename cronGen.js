@@ -314,25 +314,25 @@
         var results = "";
         switch (activeTab) {
             case "MinutesTab":
-                results = "0 0/" + $("#MinutesInput").val() + " * 1/1 * ? *";
+                results = "*/" + $("#MinutesInput").val() + " * * * *";
                 break;
             case "HourlyTab":
                 switch ($("input:radio[name=HourlyRadio]:checked").val()) {
                     case "1":
-                        results = "0 0 0/" + $("#HoursInput").val() + " 1/1 * ? *";
+                        results = "0 0/" + $("#HoursInput").val() + " * * *";
                         break;
                     case "2":
-                        results = "0 " + Number($("#AtMinutes").val()) + " " + Number($("#AtHours").val()) + " 1/1 * ? *";
+                        results = Number($("#AtMinutes").val()) + " " + Number($("#AtHours").val()) + " * * *";
                         break;
                 }
                 break;
             case "DailyTab":
                 switch ($("input:radio[name=DailyRadio]:checked").val()) {
                     case "1":
-                        results = "0 " + Number($("#DailyMinutes").val()) + " " + Number($("#DailyHours").val()) + " 1/" + $("#DaysInput").val() + " * ? *";
+                        results = Number($("#DailyMinutes").val()) + " " + Number($("#DailyHours").val()) + " 1/" + $("#DaysInput").val() + " * *";
                         break;
                     case "2":
-                        results = "0 " + Number($("#DailyMinutes").val()) + " " + Number($("#DailyHours").val()) + " ? * MON-FRI *";
+                        results = Number($("#DailyMinutes").val()) + " " + Number($("#DailyHours").val()) + " ? * MON-FRI *";
                         break;
                 }
                 break;
@@ -341,15 +341,15 @@
                 $("#Weekly input:checkbox:checked").each(function () { selectedDays += $(this).val() + ","; });
                 if (selectedDays.length > 0)
                     selectedDays = selectedDays.substr(0, selectedDays.length - 1);
-                results = "0 " + Number($("#WeeklyMinutes").val()) + " " + Number($("#WeeklyHours").val()) + " ? * " + selectedDays + " *";
+                results = Number($("#WeeklyMinutes").val()) + " " + Number($("#WeeklyHours").val()) + " ? * " + selectedDays + " *";
                 break;
             case "MonthlyTab":
                 switch ($("input:radio[name=MonthlyRadio]:checked").val()) {
                     case "1":
-                        results = "0 " + Number($("#MonthlyMinutes").val()) + " " + Number($("#MonthlyHours").val()) + " " + $("#DayOfMOnthInput").val() + " 1/" + $("#MonthInput").val() + " ? *";
+                        results = Number($("#MonthlyMinutes").val()) + " " + Number($("#MonthlyHours").val()) + " " + $("#DayOfMOnthInput").val() + " 1/" + $("#MonthInput").val() + " ? *";
                         break;
                     case "2":
-                        results = "0 " + Number($("#MonthlyMinutes").val()) + " " + Number($("#MonthlyHours").val()) + " ? 1/" + Number($("#EveryMonthInput").val()) + " " + $("#DayInWeekOrder").val() + "#" + $("#WeekDay").val() + " *";
+                        results = Number($("#MonthlyMinutes").val()) + " " + Number($("#MonthlyHours").val()) + " ? 1/" + Number($("#EveryMonthInput").val()) + " " + $("#DayInWeekOrder").val() + "#" + $("#WeekDay").val() + " *";
                         break;
                 }
                 break;
