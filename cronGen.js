@@ -2,12 +2,26 @@
 
 (function ($) {
     
+    var pluginName = "cronGen";
     var resultsName = "";
     var inputElement;
     var displayElement;
+    var defaults = {
+        button_icon_class: 'icon-edit',
+        popover_placement: 'bottom'
+    };
     
+    function cronGen(element, options) {
+        this.settings = $.extend({}, defaults, options);
+        this._defaults = defaults;
+        this._name = pluginName;
+        this.init();
+    }
+
     $.fn.extend({
-        cronGen: function () {
+        cronGen: function (options) {
+            this.settings = $.extend({}, defaults, options);
+            console.log(this.settings);
             //create top menu
             var cronContainer = $("<div/>", { id: "CronContainer", style: "display:none;width:300px;height:300px;" });
             var mainDiv = $("<div/>", { id: "CronGenMainDiv", style: "width:480px;height:270px;" });
@@ -183,7 +197,7 @@
             var $i = $("<input>", { type: 'text', placeholder: 'Cron trigger', readonly: 'readonly' }).addClass("form-control").val($(that).val());
             $i.appendTo($g);
             // Add the button
-            var $b = $("<button class=\"btn btn-default\"><i class=\"icon-edit\"></i></button>");
+            var $b = $("<button class=\"btn btn-default\"><i class=\"" + this.settings['button_icon_class'] + "\"></i></button>");
             // Put button inside span
             var $s = $("<span>").addClass("input-group-btn");
             $b.appendTo($s);
@@ -200,7 +214,7 @@
                     return $(cronContainer).html();
                 },
                 template: '<div class="popover" style="max-width:500px !important; width:500px"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>',
-                placement: 'bottom'
+                placement: this.settings['popover_placement']
 
             }).on('click', function (e) {
                 e.preventDefault();
