@@ -8,7 +8,8 @@
     var displayElement;
     var defaults = {
         button_icon_class: 'icon-edit',
-        popover_placement: 'bottom'
+        popover_placement: 'bottom',
+        input_name: 'cron'
     };
     
     function cronGen(element, options) {
@@ -194,7 +195,7 @@
             // Replace the input with an input group
             var $g = $("<div>").addClass("input-group");
             // Add an input
-            var $i = $("<input>", { type: 'text', placeholder: 'Cron trigger', readonly: 'readonly' }).addClass("form-control").val($(that).val());
+            var $i = $("<input>", { type: 'text', placeholder: 'Cron trigger', value: $(that).val(), id: $(that).attr('id'), name: this.settings['input_name'] }).addClass("form-control").val($(that).val());
             $i.appendTo($g);
             // Add the button
             var $b = $("<button class=\"btn btn-default\"><i class=\"" + this.settings['button_icon_class'] + "\"></i></button>");
